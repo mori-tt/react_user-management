@@ -1,10 +1,13 @@
 import "./App.css";
-import { Button } from "./components/ui/button";
+import { Provider } from "./components/ui/provider";
+import { Router } from "./router/Router";
 
 function App() {
   return (
     <>
-      <Button colorPalette="teal">Click me</Button>
+      <Provider>
+        <Router />
+      </Provider>
     </>
   );
 }
