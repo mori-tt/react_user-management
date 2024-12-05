@@ -1,3 +1,10 @@
-export const Home = () => {
-  return <div>Home</div>;
+import { HeaderLayout } from "@/components/template/HeaderLayout";
+
+export const Home = ({ children }: { children?: React.ReactNode }) => {
+  return (
+    <HeaderLayout>
+      <p>Home</p>
+      {children}
+    </HeaderLayout>
+  );
 };

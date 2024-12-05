@@ -1,3 +1,10 @@
-export const Page404 = () => {
-  return <div>Page404</div>;
+import { HeaderLayout } from "@/components/template/HeaderLayout";
+
+export const Page404 = ({ children }: { children?: React.ReactNode }) => {
+  return (
+    <HeaderLayout>
+      <p>Page404</p>
+      {children}
+    </HeaderLayout>
+  );
 };

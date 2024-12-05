@@ -1,3 +1,14 @@
-export const UserManagement = () => {
-  return <div>UserManagement</div>;
+import { HeaderLayout } from "@/components/template/HeaderLayout";
+
+export const UserManagement = ({
+  children,
+}: {
+  children?: React.ReactNode;
+}) => {
+  return (
+    <HeaderLayout>
+      <p>UserManagement</p>
+      {children}
+    </HeaderLayout>
+  );
 };
