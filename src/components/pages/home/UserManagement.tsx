@@ -1,13 +1,20 @@
 import { UserCard } from "@/components/organisms/user/UserCard";
 import { HeaderLayout } from "@/components/template/HeaderLayout";
 import { useAllUsers } from "@/hooks/useAllUsers";
+import { useUserModal } from "@/hooks/useUserModal";
 import { SimpleGrid, Flex, Spinner, Center } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { UserDetailModal } from "../../organisms/user/UserDetailModal";
 
 export const UserManagement = () => {
   const { getUsers, users, loading } = useAllUsers();
+  const { selectedUser, isModalOpen, onOpenModal, onCloseModal } =
+    useUserModal();
 
-  useEffect(() => getUsers(), []);
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
+
   return (
     <HeaderLayout>
       {loading ? (
@@ -27,9 +34,18 @@ export const UserManagement = () => {
                 imageUrl={`https://picsum.photos/seed/${user.id}/800`}
                 userName={user.username}
                 fullName={user.name}
+                onClickUser={() => onOpenModal(user)}
               />
             ))}
           </SimpleGrid>
+          {selectedUser && (
+            <UserDetailModal
+              user={selectedUser}
+              isOpen={isModalOpen}
+              onClose={onCloseModal}
+              imageUrl={`https://picsum.photos/seed/${selectedUser.id}/800`}
+            />
+          )}
         </Flex>
       )}
     </HeaderLayout>
