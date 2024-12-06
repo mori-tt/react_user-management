@@ -1,12 +1,14 @@
 import { User } from "@/types/api/type";
+import { LoginUser } from "@/providers/LoginUserProvider";
 import { useState, useCallback } from "react";
 
 export const useUserModal = () => {
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [selectedUser, setSelectedUser] = useState<LoginUser | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onOpenModal = useCallback((user: User) => {
-    setSelectedUser(user);
+    const loginUser: LoginUser = { ...user, isAdmin: false };
+    setSelectedUser(loginUser);
     setIsModalOpen(true);
   }, []);
 

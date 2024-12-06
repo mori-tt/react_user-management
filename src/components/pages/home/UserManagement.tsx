@@ -5,11 +5,16 @@ import { useUserModal } from "@/hooks/useUserModal";
 import { SimpleGrid, Flex, Spinner, Center } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { UserDetailModal } from "../../organisms/user/UserDetailModal";
+import { useLoginUser } from "@/hooks/useLoginUser";
 
 export const UserManagement = () => {
   const { getUsers, users, loading } = useAllUsers();
   const { selectedUser, isModalOpen, onOpenModal, onCloseModal } =
     useUserModal();
+
+  const { loginUser } = useLoginUser();
+
+  console.log(loginUser);
 
   useEffect(() => {
     getUsers();
@@ -44,6 +49,7 @@ export const UserManagement = () => {
               isOpen={isModalOpen}
               onClose={onCloseModal}
               imageUrl={`https://picsum.photos/seed/${selectedUser.id}/800`}
+              isAdmin={loginUser?.isAdmin}
             />
           )}
         </Flex>
